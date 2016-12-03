@@ -24,3 +24,7 @@ exec("cf", "create-space", space_name);
 with open(config_file_path, 'w') as out:
     source['space'] = space_name;
     json.dump(source, out, sort_keys=True, indent=2);
+
+json.dump({
+    "version" : { "space" : space_name}
+}, sys.stdout);
