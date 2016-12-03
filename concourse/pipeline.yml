@@ -17,6 +17,10 @@ resources:
     email: {{docker_hub_email}}
     password: {{docker_hub_password}}
     repository: kdvolder/cf-test-space-resource
+- name: test-space
+  type: cf-test-space
+  source: 
+    api_url: {{cf_api_url}}
 jobs:
 - name: build-docker-image
   serial: true
@@ -28,5 +32,8 @@ jobs:
       build: git
     get_params: 
       skip_download: true
+- name: integration-test
+  - get: git
+  - get: test-space
   - task: integration-test
     file: git/concourse/test-task.yml
