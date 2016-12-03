@@ -43,5 +43,9 @@ jobs:
     params:
       skip_download: true
   - get: test-space
-  - task: integration-test
-    file: git/concourse/test-task.yml
+  - task: test-space-exists
+    file: git/concourse/tasks/test-space-exists.yml
+  - put: test-space
+  - task: test-space-destroyed
+    file: git/concourse/tasks/test-space-destroyed.yml
+  
