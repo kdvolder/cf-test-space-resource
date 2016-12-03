@@ -21,6 +21,9 @@ resources:
   type: cf-test-space
   source: 
     api_url: {{cf_api_url}}
+    user: {{cf_user}}
+    password: {{cf_password}}
+    org: {{cf_org}}
 jobs:
 - name: build-docker-image
   serial: true
