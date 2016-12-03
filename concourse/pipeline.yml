@@ -33,7 +33,11 @@ jobs:
     get_params: 
       skip_download: true
 - name: integration-test
+  plan:
   - get: git
+  - get: docker_image
+    params:
+      skip_download: true
   - get: test-space
   - task: integration-test
     file: git/concourse/test-task.yml

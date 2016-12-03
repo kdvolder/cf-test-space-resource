@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ADD assets/* /opt/cf-test-space-resource/
+ADD assets/* /opt/resource/
 
 RUN apt-get update && apt-get install -y \
   jq \
