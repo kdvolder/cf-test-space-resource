@@ -1,0 +1,32 @@
+resource_types:
+- name: cf-test-space
+  type: docker-image
+  source:
+    repository: kdvolder/cf-test-space-resource
+resources:
+- name: git
+  type: git
+  source:
+    uri: git@github.com:kdvolder/cf-test-space-resource
+    branch: master
+    private_key: {{rsa_id}}
+- name: docker-image
+  type: docker-image
+  source:
+    username: {{docker_hub_username}}
+    email: {{docker_hub_email}}
+    password: {{docker_hub_password}}
+    repository: kdvolder/cf-test-space-resource
+jobs:
+- name: build-docker-image
+  serial: true
+  plan:
+  - get: git
+    trigger: true
+  - put: docker-image
+    params:
+      build: git
+    get_params: 
+      skip_download: true
+  - task: integration-test
+    file: git/concourse/test-task.yml

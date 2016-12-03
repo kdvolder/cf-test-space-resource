@@ -1,0 +1,9 @@
+{
+    "source": {
+        "api_url": "https://api.run.pivotal.io",
+        "org": "application-platform-testing",
+        "user": "kdevolder@gopivotal.com",
+        "password": "SECRET"
+    },
+    "version": "a-test-space"
+}

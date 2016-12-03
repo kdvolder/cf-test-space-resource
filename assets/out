@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+from commons import eprint, exec
+import json;
+import sys;
+
+resource_dir = sys.argv[1]
+config_file_path = resource_dir+'/'+'config.json';
+config_data = None
+
+ignored = json.load(sys.stdin);
+
+with open(config_file_path, 'r') as config_file:
+    config_data = json.load(config_file);
+
+space_name = config_data['space'];
+
+eprint("resource_dir=", resource_dir);
+eprint("config_data=", config_data);
+
+exec("cf", "login", 
+        "-a", config_data['api_url'], 
+        "-u", config_data['user'], 
+        "-p", config_data['password'],
+        "-o", config_data['org']);
+
+exec("cf", "delete-space", "-f", space_name);
+
+json.dump({ "version": space_name }, sys.stdout);

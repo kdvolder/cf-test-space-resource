@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+import subprocess;
+import json;
+import sys;
+from commons import eprint, exec;
+
+target_dir = sys.argv[1]
+config_file_path = target_dir+"/config.json"
+payload = json.load(sys.stdin);
+eprint("payload=", payload);
+eprint("target_dir=", target_dir);
+eprint("config_file_path=", config_file_path);
+
+source = payload["source"];
+space_name = payload["version"];
+
+exec("cf", "login", 
+        "-a", source['api_url'], 
+        "-u", source['user'], 
+        "-p", source['password'],
+        "-o", source['org']);
+exec("cf", "create-space", space_name);
+
+with open(config_file_path, 'w') as out:
+    source['space'] = space_name;
+    json.dump(source, out, sort_keys=True, indent=2);
