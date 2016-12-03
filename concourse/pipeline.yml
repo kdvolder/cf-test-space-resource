@@ -35,7 +35,8 @@ jobs:
 - name: integration-test
   plan:
   - get: git
-  - get: docker_image
+  - get: docker-image
+    trigger: true
     params:
       skip_download: true
   - get: test-space
