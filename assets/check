@@ -14,5 +14,5 @@ eprint("source=", source);
 space_name = ''.join(random.SystemRandom().choice(string.ascii_lowercase) for _ in range(NAME_LEN));
 
 
-print(json.dumps([{ "space" : space_name]}));
+print(json.dumps([{ "space" : space_name}]));
 
