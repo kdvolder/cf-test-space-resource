@@ -45,6 +45,10 @@ jobs:
   - get: test-space
   - task: test-space-exists
     file: git/concourse/tasks/test-space-exists.yml
+    ensure:
+      task: cleanup
+      file: git/concourse/tasks/cleanup.yml
+
 #  - put: test-space
 #  - task: test-space-destroyed
 #    file: git/concourse/tasks/test-space-destroyed.yml
