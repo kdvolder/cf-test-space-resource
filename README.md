@@ -4,8 +4,7 @@ cf-test-space Resource
 This resource helps with setting up a temporary test-space
 on cloudfoundry, suitable for running integration tests.
 
-Getting the resource creates the test-space with a randomly generated name
-and putting it destroys it.
+Getting the resource creates the test-space with a randomly generated name.
 
 Source Configuration
 --------------------
@@ -44,4 +43,4 @@ contents like the following:
 
 ### out: Delete the test space
 
-An attempt is made to delete the test-space.
+Invalid, not implemented.
